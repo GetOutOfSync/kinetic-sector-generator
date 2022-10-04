@@ -1,0 +1,15 @@
+{
+	"heavy_planet_atmo_table": [{
+		"rolls": 1,
+		"entries": [{
+			"result": "Moderate",
+			"weight": 2
+		}, {
+			"result": "Dense",
+			"weight": 6
+		}, {
+			"result": "Very Dense",
+			"weight": 2
+		}]
+	}]
+}

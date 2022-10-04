@@ -1,0 +1,12 @@
+{
+	"heavier_planet_atmo_table": [{
+		"rolls": 1,
+		"entries": [{
+			"result": "Very Dense",
+			"weight": 8
+		}, {
+			"result": "Dense",
+			"weight": 2
+		}]
+	}]
+}

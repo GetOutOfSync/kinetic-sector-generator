@@ -1,0 +1,12 @@
+{
+	"lighter_planet_atmo_table": [{
+		"rolls": 1,
+		"entries": [{
+			"result": "None",
+			"weight": 8
+		}, {
+			"result": "Thin",
+			"weight": 2
+		}]
+	}]
+}
