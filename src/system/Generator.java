@@ -1,5 +1,6 @@
 package system;
 
+import java.util.Arrays;
 import java.util.SplittableRandom;
 
 /**
@@ -65,6 +66,44 @@ public class Generator {
 		return total + times;
 	}
 	
+	/**
+	 * This method expects a dice roll to be first in its current implementation, so 1d100 or whatever needs to go before any math.
+	 * Failure to follow will lead to strange issues I may or may not bother fixing. Can include just a raw number without math, like "5".
+	 * @param string String which needs to be processed into a random roll (Example: "2d6+10") Do not include whitespace.
+	 * @return Randomly generated number
+	 */
+	public int parseString(String string) {
+		String[] numberArray = string.split("[d+*//- ]");
+		if (numberArray.length == 1) return getValue(numberArray[0]);
+		String operators = string.replaceAll("[^d+*//-]","");
+		int holder = 0;
+		for (int i = 0; i < operators.length(); i++) {
+			switch (operators.charAt(i)) {
+				case 'd':
+					holder += rollMany(getValue(numberArray[i]), getValue(numberArray[i+1]));
+					break;
+				case '+':
+					holder += getValue(numberArray[i + 1]);
+					break;
+				case '-':
+					holder -= getValue(numberArray[i + 1]);
+					break;
+				case '*':
+					holder *= getValue(numberArray[i + 1]);
+					break;
+				case '/':
+					holder /= getValue(numberArray[i + 1]);
+					break;
+			}
+		}
+		return holder;
+		
+	}
+	
+	private int getValue(String string) {
+		return Integer.parseInt(string);
+	}
+
 	public String rollOnTable(ChanceTable table) {
 		return table.getResult(roll(table.getTotalChance(), true));
 	}
