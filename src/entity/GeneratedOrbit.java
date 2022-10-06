@@ -1,11 +1,13 @@
 package entity;
 
 import java.util.ArrayList;
+import json.Exclude;
 
 public abstract class GeneratedOrbit extends TaggedObject {
 	
 	protected long parentID;
 	protected int orbitZone;
+	@Exclude
 	protected ArrayList<GeneratedOrbit> orbitTable;
 
 	public GeneratedOrbit() {

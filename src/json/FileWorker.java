@@ -1,4 +1,4 @@
-package system;
+package json;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -13,7 +13,7 @@ public class FileWorker {
 	private Gson worker;
 
 	public FileWorker() {
-		worker = new Gson();
+		worker = new GsonBuilder().setExclusionStrategies(new AnnotationExclusionStrategy()).create();
 	}
 	
 	public String objectToJson(Object object) {

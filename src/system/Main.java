@@ -6,6 +6,7 @@ import entity.Planet;
 import entity.PlanetAttributes;
 import entity.SolarSystem;
 import entity.TaggedObject;
+import json.FileWorker;
 import manager.*;
 
 public class Main {
@@ -17,7 +18,11 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		
+		FileWorker worker = new FileWorker();
+		SolarGen solarManager = new SolarGen();
+		SolarSystem solar = solarManager.newSystem();
+		worker.exportObject(solar, "C:\\Users\\Gaming\\Desktop\\Test\\solarv2.json");
+		System.out.println(worker.importObject("C:\\Users\\Gaming\\Desktop\\Test\\solarv2.json"));
 	}
 
 	public static void planetTest() {
