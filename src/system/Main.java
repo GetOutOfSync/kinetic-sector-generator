@@ -1,7 +1,6 @@
 package system;
 
 import java.util.ArrayList;
-
 import entity.GeneratedOrbit;
 import entity.Planet;
 import entity.PlanetAttributes;
@@ -18,12 +17,11 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		long startTime = System.currentTimeMillis();
-		lifeTest();
-		//averageLifeSeed();
-		long endTime = System.currentTimeMillis();
-		
-		System.out.println("Execution time: " + (endTime - startTime) + " milliseconds");
+		FileWorker fileworker = new FileWorker();
+		SolarGen solarManager = new SolarGen();
+		SolarSystem solar = solarManager.newSystem();
+		fileworker.exportObject(solar, "C:\\Users\\Gaming\\Desktop\\Test\\solar.json");
+		System.out.println(fileworker.importObject("C:\\Users\\Gaming\\Desktop\\Test\\solar.json"));
 	}
 
 	public static void planetTest() {
