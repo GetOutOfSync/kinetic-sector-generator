@@ -2,17 +2,38 @@ package system;
 
 import java.util.ArrayList;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import json.FileWorker;
+
 public class ChanceTable {
 	
-	private ChanceResult[] table;
+	private ArrayList<ChanceResult> table;
 	private int totalChance;
 	
-	public ChanceTable(ChanceResult[] table) {
-		this.table = table;
+	public ChanceTable(String profile, String filename) {
+		table = new ArrayList<ChanceResult>();
+		
+		FileWorker fileWorker = new FileWorker();
+		JsonObject json = fileWorker.importRandTable(profile, filename);
+		JsonObject jsonTable = json.get("table").getAsJsonObject();
+		JsonArray entries = jsonTable.getAsJsonArray("entries");
+		
+		for (int i = 0; i < entries.size(); i++) {
+			JsonObject entry = entries.get(i).getAsJsonObject();
+			ChanceResult result = new ChanceResult(entry.get("weight").getAsInt(), entry.get("result").getAsString());
+			table.add(result);
+		}
+		
 		this.totalChance = 0;
 		for (ChanceResult result : table) {
 			this.totalChance += result.getChance();
 		}
+	}
+	
+	public ChanceTable(String filename) {
+		this("default", filename);
 	}
 	
 	public String getResult(int roll) {
@@ -27,4 +48,5 @@ public class ChanceTable {
 	public int getTotalChance() {
 		return this.totalChance;
 	}
+	
 }

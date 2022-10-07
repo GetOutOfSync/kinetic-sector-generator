@@ -1,0 +1,22 @@
+{
+	"title": "planet_type",
+	"table": {
+		"rolls": 1,
+		"entries": [{
+			"result": "Dwarf",
+			"weight": 3
+		}, {
+			"result": "Terrestrial",
+			"weight": 2
+		}, {
+			"result": "Gas Giant",
+			"weight": 1
+		}, {
+			"result": "Asteroid",
+			"weight": 1
+		}, {
+			"result": "Comet",
+			"weight": 1
+		}]
+	}
+}

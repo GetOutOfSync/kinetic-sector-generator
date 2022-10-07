@@ -40,6 +40,34 @@ public class FileWorker {
 		else return importObject(defaultPath);
 	}
 	
+	public JsonObject importRandTable(String profile, String filename) {
+		String primaryPath = System.getProperty("user.dir") + "\\config\\" + profile + "\\" + filename;
+		String defaultPath = System.getProperty("user.dir") + "\\config\\default\\" + filename;
+		if (checkPath(primaryPath)) return importObjectAsJSON(primaryPath);
+		else return importObjectAsJSON(defaultPath);
+	}
+	
+	public JsonObject importObjectAsJSON(String path) {
+		if (checkPath(path)) {
+			FileReader reader;
+			try {
+				reader = new FileReader(path);
+				JsonObject holder = worker.fromJson(reader, JsonElement.class).getAsJsonObject();
+				reader.close();
+				return holder;
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+		}
+		return null;
+	}
+	
 	public String importObject(String path) {
 		if (checkPath(path)) {
 			FileReader reader;

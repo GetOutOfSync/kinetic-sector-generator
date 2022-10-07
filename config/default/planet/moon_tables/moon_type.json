@@ -1,0 +1,13 @@
+{
+	"title": "moon_type",
+	"table": {
+		"rolls": 1,
+		"entries": [{
+			"result": "Dwarf",
+			"weight": 7
+		}, {
+			"result": "Terrestrial",
+			"weight": 3
+		}]
+	}
+}

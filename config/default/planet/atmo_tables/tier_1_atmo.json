@@ -1,15 +1,13 @@
 {
-	"light_planet_atmo_table": [{
+	"title": "tier_1_atmo",
+	"table": {
 		"rolls": 1,
 		"entries": [{
 			"result": "None",
-			"weight": 2
+			"weight": 8
 		}, {
 			"result": "Thin",
-			"weight": 6
-		}, {
-			"result": "Moderate",
 			"weight": 2
 		}]
-	}]
+	}
 }

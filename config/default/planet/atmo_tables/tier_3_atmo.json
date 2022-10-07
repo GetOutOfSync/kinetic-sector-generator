@@ -1,5 +1,6 @@
 {
-	"moderate_planet_atmo_table": [{
+	"title": "tier_3_atmo",
+	"table": {
 		"rolls": 1,
 		"entries": [{
 			"result": "Thin",
@@ -11,5 +12,5 @@
 			"result": "Dense",
 			"weight": 2
 		}]
-	}]
+	}
 }

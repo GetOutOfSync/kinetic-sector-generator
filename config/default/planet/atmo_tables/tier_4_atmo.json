@@ -1,5 +1,6 @@
 {
-	"heavy_planet_atmo_table": [{
+	"title": "tier_4_atmo",
+	"table": {
 		"rolls": 1,
 		"entries": [{
 			"result": "Moderate",
@@ -11,5 +12,5 @@
 			"result": "Very Dense",
 			"weight": 2
 		}]
-	}]
+	}
 }

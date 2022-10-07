@@ -1,0 +1,13 @@
+{
+	"title": "tier_3_moon",
+	"table": {
+		"rolls": 1,
+		"entries": [{
+			"result": "1d10/2",
+			"weight": 4
+		}, {
+			"result": "2d10/2",
+			"weight": 6
+		}]
+	}
+}

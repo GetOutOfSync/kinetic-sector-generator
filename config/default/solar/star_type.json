@@ -1,0 +1,28 @@
+{
+	"title": "star_type",
+	"table": {
+		"rolls": 1,
+		"entries": [{
+			"result": "M",
+			"weight": 74
+		}, {
+			"result": "K",
+			"weight": 12
+		}, {
+			"result": "G",
+			"weight": 8
+		}, {
+			"result": "F",
+			"weight": 3
+		}, {
+			"result": "A",
+			"weight": 1
+		}, {
+			"result": "B",
+			"weight": 1
+		}, {
+			"result": "O",
+			"weight": 1
+		}]
+	}
+}

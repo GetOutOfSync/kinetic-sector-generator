@@ -3,6 +3,8 @@ package system;
 import java.util.Arrays;
 import java.util.SplittableRandom;
 
+import json.FileWorker;
+
 /**
  * 
  * @author Tanner Hansen
@@ -73,7 +75,7 @@ public class Generator {
 	 * @return Randomly generated number
 	 */
 	public int parseString(String string) {
-		String[] numberArray = string.split("[d+*//- ]");
+		String[] numberArray = string.split("[d+*//-]");
 		if (numberArray.length == 1) return getValue(numberArray[0]);
 		String operators = string.replaceAll("[^d+*//-]","");
 		int holder = 0;
@@ -97,13 +99,15 @@ public class Generator {
 			}
 		}
 		return holder;
-		
 	}
 	
 	private int getValue(String string) {
 		return Integer.parseInt(string);
 	}
 
+	/*
+	 * This method is getting replaced.
+	 */
 	public String rollOnTable(ChanceTable table) {
 		return table.getResult(roll(table.getTotalChance(), true));
 	}

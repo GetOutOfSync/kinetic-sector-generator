@@ -1,4 +1,4 @@
-package manager;
+/*package manager;
 
 import java.util.ArrayList;
 
@@ -75,4 +75,4 @@ public class TerrainManager extends Manager {
 			default : return new Flatlands();
 		}
 	}
-}
+}*/
