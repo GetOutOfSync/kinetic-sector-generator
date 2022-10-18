@@ -11,6 +11,7 @@ public class ChanceTable {
 	
 	private ArrayList<ChanceResult> table;
 	private int totalChance;
+	private String name;
 	
 	public ChanceTable(String profile, String filename) {
 		table = new ArrayList<ChanceResult>();
@@ -30,6 +31,8 @@ public class ChanceTable {
 		for (ChanceResult result : table) {
 			this.totalChance += result.getChance();
 		}
+		
+		this.name = json.get("title").getAsString;
 	}
 	
 	public ChanceTable(String filename) {
@@ -47,6 +50,10 @@ public class ChanceTable {
 	
 	public int getTotalChance() {
 		return this.totalChance;
+	}
+	
+	public String getName() {
+		return this.name	
 	}
 	
 }
