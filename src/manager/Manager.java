@@ -39,12 +39,23 @@ public abstract class Manager {
 		this.gen = new Generator(seed);
 	}
 	
+	/**
+	 * This function is run on all managers to initialize and store child Managers required to work on objects further down.
+	 * This is so we can pass shared objects around, regardless of what level we are testing at.
+	 */
 	protected abstract void initManagers();
 	
+	/**
+	 * This function adds a child manager to the list for passing around.
+	 * @param child Manager required to build out lower objects
+	 */
 	protected void addChildManager(Manager child) {
 		this.childManagers.add(child);
 	}
 	
+	/** Gets a list of this managers children and their children as well.
+	 * @return Complete list of required managers for this manager.
+	 */
 	public ArrayList<Manager> getChildManagers() {
 		ArrayList<Manager> holder = new ArrayList<>(childManagers);
 		if (childManagers != null) {

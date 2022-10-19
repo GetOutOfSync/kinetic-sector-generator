@@ -16,6 +16,11 @@ public class ChanceTable {
 		}
 	}
 	
+	/**
+	 * Pulls a result from its table based on what was rolled.
+	 * @param roll Number to pull
+	 * @return Whatever entry is stored at that location.
+	 */
 	public String getResult(int roll) {
 		int comp = 0;
 		for (ChanceResult chance : table) {
@@ -25,10 +30,16 @@ public class ChanceTable {
 		return "null";
 	}
 	
+	/**
+	 * @return Total size of the table numerically, accounting for the weights of each entry.
+	 */
 	public int getTotalChance() {
 		return this.totalChance;
 	}
 	
+	/**
+	 * @return Name of the table.
+	 */
 	public String getName() {
 		return this.name;	
 	}

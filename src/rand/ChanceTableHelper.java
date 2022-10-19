@@ -9,6 +9,10 @@ public final class ChanceTableHelper {
 
 	private ChanceTableHelper() {}
 	
+	/** Converts a JsonObject in the standard format into a ChanceTable
+	 * @param json Formatted JsonObject
+	 * @return ChanceTable
+	 */
 	public static ChanceTable JsonToChanceTable(JsonObject json) {
 		JsonObject jsonTable = json.get("table").getAsJsonObject();
 		JsonArray table = jsonTable.getAsJsonArray("entries");
@@ -25,6 +29,10 @@ public final class ChanceTableHelper {
 		return new ChanceTable(title, results.toArray(completedResults));
 	}
 	
+	/** Converts an entire list of formatted JsonObjects into ChanceTables.
+	 * @param jsonTable Table of formatted JsonObjects
+	 * @return ArrayList of ChanceTables
+	 */
 	public static ArrayList<ChanceTable> JsonTableToChanceTable(JsonObject[] jsonTable) {
 		ArrayList<ChanceTable> table = new ArrayList<ChanceTable>();
 		for (JsonObject json : jsonTable) {
