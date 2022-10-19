@@ -2,13 +2,9 @@ package entity;
 
 import java.util.ArrayList;
 
-import entity.Star;
-import json.Exclude;
-
 public class SolarSystem extends GeneratedOrbit {
 	
 	private int totalLuminosity;
-	@Exclude
 	private ArrayList<Star> starCluster;
 
 	public SolarSystem() {

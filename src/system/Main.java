@@ -6,15 +6,18 @@ import entity.Planet;
 import entity.PlanetAttributes;
 import entity.SolarSystem;
 import entity.TaggedObject;
-import json.FileWorker;
 import manager.*;
+import rand.FileWorker;
+import rand.Generator;
+import rand.TableStore;
 
 public class Main {
 	
 	public static final int TESTS = 100000;
+	public static TableStore stor = new TableStore();
 
 	public Main() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public static void main(String[] args) {
@@ -30,6 +33,7 @@ public class Main {
 	
 	public static void solarTest() {
 		SolarGen solarManager = new SolarGen();
+		solarManager.addTableStor(stor);
 		SolarSystem solar = solarManager.newSystem();
 		TextOutput.println(solar.getStats());
 	}

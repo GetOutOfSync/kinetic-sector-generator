@@ -15,6 +15,8 @@ public class LifeManager extends Manager {
 		super(seed);
 	}
 	
+	protected void initManagers(){};
+	
 	/** This function is still heavily in development, but conceptually this function will take a planet and read its attributes and terrain slots
 	 * to determine if life can be supported on the planet, and then decides whether life has taken root.
 	 * 

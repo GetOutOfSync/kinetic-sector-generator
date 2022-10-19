@@ -1,9 +1,7 @@
-package system;
+package rand;
 
 import java.util.Arrays;
 import java.util.SplittableRandom;
-
-import json.FileWorker;
 
 /**
  * 
