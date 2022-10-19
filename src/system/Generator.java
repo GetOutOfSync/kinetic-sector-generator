@@ -53,7 +53,7 @@ public class Generator {
 	 /** @return Random number between 1 and 100 inclusive
 	 */
 	public int rollPercent() {
-		return this.rand.nextInt(100) + 1;
+		return roll(100, true);
 	}
 	
 	/**@param times Number of dice to roll
@@ -63,9 +63,9 @@ public class Generator {
 	public int rollMany(int times, int max) {
 		int total = 0;
 		for (int i = 0; i < times; i++) {
-			total += roll(max);
+			total += roll(max, true);
 		}
-		return total + times;
+		return total;
 	}
 	
 	/**
@@ -101,12 +101,17 @@ public class Generator {
 		return holder;
 	}
 	
+	/*
+	 * @return Integer value of a given string. Helper function
+	 */
 	private int getValue(String string) {
 		return Integer.parseInt(string);
 	}
 
 	/*
-	 * This method is getting replaced.
+	 * This function takes a ChanceTable object, rolls based on the total weight of the table, and selects a
+	 * result based on that roll.
+	 * @return
 	 */
 	public String rollOnTable(ChanceTable table) {
 		return table.getResult(roll(table.getTotalChance(), true));
