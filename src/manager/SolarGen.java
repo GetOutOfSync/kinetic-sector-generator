@@ -2,6 +2,7 @@ package manager;
 import entity.PlanetAttributes;
 import entity.SolarSystem;
 import entity.Star;
+import rand.ChanceTable;
 
 /** This class handles the setup of SolarSystem objects. Below is the general flow of execution for various conceptual functions.
  * 
@@ -21,14 +22,17 @@ public class SolarGen extends Manager {
 	
 	public SolarGen() {
 		super();
-		starManager = new StarGen(gen.genSeed());
-		planetManager = new PlanetGen(gen.genSeed());
 	}
 	
 	public SolarGen(long seed) {
 		super(seed);
+	}
+	
+	protected void initManagers() {
 		starManager = new StarGen(gen.genSeed());
+		addChildManager(starManager);
 		planetManager = new PlanetGen(gen.genSeed());
+		addChildManager(planetManager);
 	}
 	
 	/** Determines the zone label given to objects in orbit based on a star's luminosity and planetary zone.
@@ -77,7 +81,7 @@ public class SolarGen extends Manager {
 		workObject.setID(seed);
 		
 		//Creates the Solar System star. starNum is hardcoded for now just for testing.
-		int starNum = Integer.parseInt(gen.rollOnTable(SolarRandTables.STAR_NUM_CHANCE_TABLE));
+		int starNum = Integer.parseInt(gen.rollOnTable(stor.getChanceTable("star_num")));
 		
 		for (int i = 0; i < starNum; i++) {
 			workObject.addStar(starManager.newStar(gen.genSeed()));

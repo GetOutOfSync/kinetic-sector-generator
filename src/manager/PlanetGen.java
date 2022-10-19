@@ -44,33 +44,7 @@ public class PlanetGen extends Manager {
 		setSeed(seed);
 		
 		int roll = gen.roll(8, true);
-		String type = "";
-		switch (roll) {
-			case 1: 
-				type = PlanetAttributes.PLANET_TYPE_DWARF;
-				break;
-			case 2: 
-				type = PlanetAttributes.PLANET_TYPE_DWARF;
-				break;
-			case 3: 
-				type = PlanetAttributes.PLANET_TYPE_DWARF;
-				break;
-			case 4: 
-				type = PlanetAttributes.PLANET_TYPE_TERRESTRIAL;
-				break;
-			case 5: 
-				type = PlanetAttributes.PLANET_TYPE_TERRESTRIAL;
-				break;
-			case 6: 
-				type = PlanetAttributes.PLANET_TYPE_GAS_GIANT;
-				break;
-			case 7: 
-				type = PlanetAttributes.PLANET_TYPE_ASTEROID;
-				break;
-			case 8: 
-				type = PlanetAttributes.PLANET_TYPE_COMET;
-				break;
-		}
+		String type = gen.rollOnTable(stor.getChanceTable("planet_type"));
 		
 		workObject = new Planet(type);
 		workObject.setID(this.seed);
@@ -82,6 +56,8 @@ public class PlanetGen extends Manager {
 		genMoons(workObject);
 		return workObject;
 	}
+	
+	protected void initManagers() {}
 	
 	/** Generates a new Planet. Zone defaults to Far, as it is assumed it does not have a Star parent.
 	 * 
@@ -107,28 +83,25 @@ public class PlanetGen extends Manager {
 		int roll = gen.roll(10, true);
 		double planetMass = planet.getMass();
 		
+		//Tier 1
 		if (planetMass <= 0.3) {
-			if (roll <= 8) planet.setAtmosphere(PlanetAttributes.ATMO_LABEL_NONE);
-			else planet.setAtmosphere(PlanetAttributes.ATMO_LABEL_THIN);
+			planet.setAtmosphere(gen.rollOnTable(stor.getChanceTable("tier_1_atmo")));
 		}
+		//Tier 2
 		else if (planetMass <= 0.75) {
-			if (roll <= 2) planet.setAtmosphere(PlanetAttributes.ATMO_LABEL_NONE);
-			else if (roll <= 8) planet.setAtmosphere(PlanetAttributes.ATMO_LABEL_THIN);
-			else planet.setAtmosphere(PlanetAttributes.ATMO_LABEL_MODERATE);
+			planet.setAtmosphere(gen.rollOnTable(stor.getChanceTable("tier_2_atmo")));
 		}
+		//Tier 3
 		else if (planetMass <= 1.25) {
-			if (roll <= 2) planet.setAtmosphere(PlanetAttributes.ATMO_LABEL_THIN);
-			else if (roll <= 8) planet.setAtmosphere(PlanetAttributes.ATMO_LABEL_MODERATE);
-			else planet.setAtmosphere(PlanetAttributes.ATMO_LABEL_DENSE);
+			planet.setAtmosphere(gen.rollOnTable(stor.getChanceTable("tier_3_atmo")));
 		}
+		//Tier 4
 		else if (planetMass <= 10) {
-			if (roll <= 2) planet.setAtmosphere(PlanetAttributes.ATMO_LABEL_MODERATE);
-			else if (roll <= 8) planet.setAtmosphere(PlanetAttributes.ATMO_LABEL_DENSE);
-			else planet.setAtmosphere(PlanetAttributes.ATMO_LABEL_VDENSE);
+			planet.setAtmosphere(gen.rollOnTable(stor.getChanceTable("tier_4_atmo")));
 		}
+		//Tier 5
 		else {
-			if (roll <= 2) planet.setAtmosphere(PlanetAttributes.ATMO_LABEL_DENSE);
-			else planet.setAtmosphere(PlanetAttributes.ATMO_LABEL_VDENSE);
+			planet.setAtmosphere(gen.rollOnTable(stor.getChanceTable("tier_5_atmo")));
 		}
 		
 		planet.setTemperature(PlanetAttributes.TEMPERATURE_TABLE[PlanetAttributes.getProxNum(planet.getZoneLabel()) + 2][PlanetAttributes.getAtmoNum(planet.getAtmosphere()) + 2]);
@@ -195,30 +168,27 @@ public class PlanetGen extends Manager {
 		double planetMass = planet.getMass();
 		int roll = gen.roll(10, true);
 		
+		//Tier 0
 		if (planetMass <= 0.5);
+		//Tier 1
 		else if (planetMass <= 2.0) {
-			if (roll < 5);
-			else if (roll <= 8) createMoonOrbits(planet, 1);
-			else if (roll <= 9) createMoonOrbits(planet, 2);
-			else createMoonOrbits(planet, gen.roll(5, true));
+			createMoonOrbits(planet, gen.parseString(gen.rollOnTable(stor.getChanceTable("tier_1_moon"))));
 		}
+		//Tier 2
 		else if (planetMass <= 15.0) {
-			if (roll < 2);
-			else if (roll <= 5) createMoonOrbits(planet, gen.roll(5, true));
-			else if (roll <= 9) createMoonOrbits(planet, gen.roll(5, true) + 1); // (1/5) 1 Ring
-			else createMoonOrbits(planet, gen.roll(10, true) / 2);
+			createMoonOrbits(planet, gen.parseString(gen.rollOnTable(stor.getChanceTable("tier_2_moon"))));
 		}
+		//Tier 3
 		else if (planetMass <= 25) {
-			if (roll <= 4) createMoonOrbits(planet, gen.roll(10, true) / 2);
-			else createMoonOrbits(planet, gen.rollMany(2, 10) / 2); // (3/10) 1d5 rings
+			createMoonOrbits(planet, gen.parseString(gen.rollOnTable(stor.getChanceTable("tier_3_moon"))));// (3/10) 1d5 rings
 		}
+		//Tier 4
 		else if (planetMass <= 130) {
-			if (roll <= 6) createMoonOrbits(planet, gen.rollMany(2, 10) / 2);
-			else createMoonOrbits(planet, gen.rollMany(3, 10) / 2); //1d10 rings
+			createMoonOrbits(planet, gen.parseString(gen.rollOnTable(stor.getChanceTable("tier_4_moon")))); //1d10 rings
 		}
+		//Tier 5
 		else {
-			if (roll <= 6) createMoonOrbits(planet, gen.rollMany(2, 10) / 2); //1d10 rings
-			else createMoonOrbits(planet, gen.rollMany(3, 10) / 2); //1d10 rings
+			createMoonOrbits(planet, gen.parseString(gen.rollOnTable(stor.getChanceTable("tier_5_moon"))));//1d10 rings
 		}
 	}
 	

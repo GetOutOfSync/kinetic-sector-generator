@@ -1,0 +1,28 @@
+{
+	"title": "star_num",
+	"table": {
+		"rolls": 1,
+		"entries": [{
+			"result": "1",
+			"weight": 60
+		}, {
+			"result": "2",
+			"weight": 35
+		}, {
+			"result": "3",
+			"weight": 1
+		}, {
+			"result": "4",
+			"weight": 1
+		}, {
+			"result": "5",
+			"weight": 1
+		}, {
+			"result": "6",
+			"weight": 1
+		}, {
+			"result": "7",
+			"weight": 1
+		}]
+	}
+}

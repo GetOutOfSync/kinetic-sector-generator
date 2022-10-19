@@ -1,0 +1,16 @@
+{
+	"title": "tier_2_atmo",
+	"table": {
+		"rolls": 1,
+		"entries": [{
+			"result": "None",
+			"weight": 2
+		}, {
+			"result": "Thin",
+			"weight": 6
+		}, {
+			"result": "Moderate",
+			"weight": 2
+		}]
+	}
+}

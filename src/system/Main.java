@@ -1,29 +1,27 @@
 package system;
 
 import java.util.ArrayList;
-
 import entity.GeneratedOrbit;
 import entity.Planet;
 import entity.PlanetAttributes;
 import entity.SolarSystem;
 import entity.TaggedObject;
 import manager.*;
+import rand.FileWorker;
+import rand.Generator;
+import rand.TableStore;
 
 public class Main {
 	
 	public static final int TESTS = 100000;
+	public static TableStore stor = new TableStore();
 
 	public Main() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public static void main(String[] args) {
-		long startTime = System.currentTimeMillis();
-		lifeTest();
-		//averageLifeSeed();
-		long endTime = System.currentTimeMillis();
-		
-		System.out.println("Execution time: " + (endTime - startTime) + " milliseconds");
+		solarTest();
 	}
 
 	public static void planetTest() {
@@ -35,6 +33,7 @@ public class Main {
 	
 	public static void solarTest() {
 		SolarGen solarManager = new SolarGen();
+		solarManager.addTableStor(stor);
 		SolarSystem solar = solarManager.newSystem();
 		TextOutput.println(solar.getStats());
 	}
@@ -44,10 +43,10 @@ public class Main {
 		SolarSystem solar = solarManager.newSystem();
 		ArrayList<GeneratedOrbit> planets = solar.getAllOrbitObjects();
 		LifeManager lifeManager = new LifeManager();
-		TerrainManager terrainManager = new TerrainManager();
+		//TerrainManager terrainManager = new TerrainManager();
 		int count = 0;
 		for (int i = 0; i < planets.size(); i++) {
-			terrainManager.generateTerrain((Planet) planets.get(i));
+			//terrainManager.generateTerrain((Planet) planets.get(i));
 			if (lifeManager.lifeCheck(planets.get(i))) count++;
 		}
 		TextOutput.println(solar.getStats());
@@ -64,9 +63,9 @@ public class Main {
 		
 		for (int i = 0; i < TESTS; i++) {
 			SolarSystem system = solarManager.newSystem();
-			TerrainManager terrainManager = new TerrainManager();
+			//TerrainManager terrainManager = new TerrainManager();
 			for (TaggedObject object : system.getAllOrbitObjects()) {
-				terrainManager.generateTerrain((Planet) object);
+				//terrainManager.generateTerrain((Planet) object);
 				if (lifeManager.lifeCheck(object)) total++;
 			}
 		}
@@ -82,8 +81,8 @@ public class Main {
 		Planet planet = planetManager.newPlanet();
 		planet.setTemperature(PlanetAttributes.TEMP_LABEL_MODERATE);
 		
-		TerrainManager terrainManager = new TerrainManager();
-		terrainManager.generateTerrain(planet);
+		//TerrainManager terrainManager = new TerrainManager();
+		//terrainManager.generateTerrain(planet);
 		System.out.println(planet.getStats());
 	}
 }

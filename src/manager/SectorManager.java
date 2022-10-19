@@ -1,8 +1,8 @@
 package manager;
 
 import entity.Sector;
+import rand.Generator;
 import system.CoordPair;
-import system.Generator;
 
 public class SectorManager extends Manager {
 
@@ -21,7 +21,12 @@ public class SectorManager extends Manager {
 		//Sets up all of the main managers which will handle generating everything at lower levels.
 		super(seed);
 
+		
+	}
+	
+	protected void initManagers() {
 		solarManager = new SolarGen(gen.genSeed());
+		addChildManager(solarManager);
 	}
 	
 	public Sector newSector() {

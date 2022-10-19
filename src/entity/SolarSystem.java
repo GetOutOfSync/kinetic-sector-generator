@@ -2,8 +2,6 @@ package entity;
 
 import java.util.ArrayList;
 
-import entity.Star;
-
 public class SolarSystem extends GeneratedOrbit {
 	
 	private int totalLuminosity;

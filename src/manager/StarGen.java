@@ -14,6 +14,9 @@ public class StarGen extends Manager {
 	public StarGen(long seed) {
 		super(seed);
 	}
+	
+	@Override
+	protected void initManagers() {}
 
 	public Star newStar() {
 		return newStar(gen.genSeed());
@@ -33,14 +36,7 @@ public class StarGen extends Manager {
 	public Star newStar(long seed) {
 		setSeed(seed);
 		
-		int roll = gen.roll(100, true);
-		String type = StarAttributes.STAR_TYPE_M;
-		if (roll == 1) type = StarAttributes.STAR_TYPE_O;
-		else if (roll == 2) type = StarAttributes.STAR_TYPE_B;
-		else if (roll == 3) type = StarAttributes.STAR_TYPE_A;
-		else if (roll <= 6) type = StarAttributes.STAR_TYPE_F;
-		else if (roll <= 14) type = StarAttributes.STAR_TYPE_G;
-		else if (roll <= 26) type = StarAttributes.STAR_TYPE_K;
+		String type = gen.rollOnTable(stor.getChanceTable("star_type"));
 		
 		workObject = new Star(type, StarAttributes.getLuminosity(type));
 		workObject.setID(this.seed);
